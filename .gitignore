@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# MySQL socket folder (local socket used in this project)
+.mysql/
+
+# Editor directories and files
+.vscode/
+*.swp
+*.sublime-project
+*.sublime-workspace
+
+# OS files
+.DS_Store
+
+# Logs and databases (if any local temporary files appear)
+*.log
+*.sqlite3
+
+# Other
+.env
