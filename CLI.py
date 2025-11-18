@@ -1,30 +1,42 @@
-from Backend_SQL.SQLController import InsertarUser, Usuario
+# CLI.py
 
-def FormUser():
-    return {
-        'Nombre': input("Nombre: "),
-        'Edad': int(input("Edad: ")),
-        'FechaNacimiento': input("Fecha de Nacimiento: ")
-    }
+from Backend_SQL.Forms import *
 
-def SendToDB(Nombre,Edad,FechaNac):
-    try:
-        usuario = Usuario(
-            Nombre=Nombre,
-            Edad=Edad,
-            FechaNacimiento=FechaNac
-        )
-        InsertarUser(usuario)
-    except Exception as e:
-        print(f"Error: {e}")
+def Menu():
+    CleanScreen()
+    print("╔════════════════════════════════════╗")
+    print("║   GESTIÓN DE USUARIOS - MYSQL      ║")
+    print("╠════════════════════════════════════╣")
+    print("║  1. Crear usuario                  ║")
+    print("║  2. Ver todos los usuarios         ║")
+    print("║  3. Buscar usuario por Nombre      ║")
+    print("║  4. Actualizar usuario             ║")
+    print("║  5. Eliminar usuario               ║")
+    print("║  6. Salir                          ║")
+    print("╚════════════════════════════════════╝")
+    print()
 
 def RunCLI():
-    print("Captura de usuarios para la base de datos")
-    print("Deseas agregar un usuario?")
-    Resp= input("S/N:  ")
+    while True:
+        Menu()
+        option = int(input("Selecciona una opción"))
+        if option == 1:
+            FormINSERT()
+        elif option == 2:
+            FormSHOWALL()
+        elif option == 3:
+            FormSEARCHBYNAME()
+        elif option == 4:
+            FormUPDATE()
+        elif option == 5:
+            FormDELETE()
+        elif option == 6:
+            CleanScreen()
+            print("¡Hasta luego!")
+            break
+        else:
+            print("Opción inválida")
+            input("\nPresiona Enter para continuar...")
+            CleanScreen()
 
-    while Resp == "S":
-        data = FormUser()
-        SendToDB(data ['Nombre'],data ['Edad'],data ['FechaNacimiento'])
-        print("Deseas agregar otro usuario?")
-        Resp= input("S/N:  ")
+
